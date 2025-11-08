@@ -1,13 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taylors MiniMart</title>
+  <link rel="stylesheet" href="shop.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Can you see me?</h1>
-    <h2>can I m jayden</h2>
-    <h3>Are you sure?</h3>
+<div class="navbar">
+  <h2>Taylors Mart</h2>
+  <div class="nav-links">
+    <a href="landingpage.html">Home</a>
+    <a href="aboume.html">About Me</a>
+  </div>
+</div>
+
+<div class="category-bar">
+  <a href="#Bread">Bread</a>
+  <a href="#Sandwich">Sandwich</a>
+  <a href="#Coffee">Coffee</a>
+  <a href="#Onigiri">Onigiri</a>
+</div>
+
+<div class="products">
+  <section id="Bread">
+    <h2>Bread</h2>
+    <div class="product-row">
+      <div class="product-card">
+        <img src="img/Banana.png">
+        <h3>Banana Cake</h3>
+        <p class="price">6.90</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/castella.png">
+        <h3>Castella Cake</h3>
+        <p class="price">7.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/matcha .png">
+        <h3>Matcha Roll Cake</h3>
+        <p class="price">5.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/honey.png">
+        <h3>Honey Roll Cake</h3>
+        <p class="price">4.90</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+    </div>
+  </section>
+
+  <section id="Sandwich">
+    <h2>Sandwich</h2>
+    <div class="product-row">
+      <div class="product-card">
+        <img src="img/Teriyaki.png" >
+        <h3>Teriyaki Chicken Sandwich</h3>
+        <p class="price">7.90</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/Katsu.png" >
+        <h3>Chicken Katsu Sandwich</h3>
+        <p class="price">8.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/Crab.png">
+        <h3>Crab Meat Sandwich</h3>
+        <p class="price">9.90</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+    </div>
+  </section>
+
+  <section id="Coffee">
+    <h2>Coffee</h2>
+    <div class="product-row">
+      <div class="product-card">
+        <img src="img/Americano.png">
+        <h3>Americano</h3>
+        <p class="price">6.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/Lattle.png">
+        <h3>Cafe Latte</h3>
+        <p class="price">8.00</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/Mocha.png">
+        <h3>Mocha</h3>
+        <p class="price">8.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+    </div>
+  </section>
+
+  <section id="Onigiri">
+    <h2>Onigiri</h2>
+    <div class="product-row">
+      <div class="product-card">
+        <img src="img/Salmon.png">
+        <h3>Salmon Onigiri</h3>
+        <p class="price">5.90</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+
+      <div class="product-card">
+        <img src="img/Tuna.png">
+        <h3>Tuna Mayo Onigiri</h3>
+        <p class="price">5.50</p>
+        <input type="number" min="0" value="0" class="qty">
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="cart-box">
+  <h3>Order Summary</h3>
+  <div id="cartItems">No items selected.</div>
+  <p>Total: <span id="cartTotal">RM 0.00</span></p>
+  <button onclick="calcBtn()" class="btn-calc">Calculate Total</button>
+  <button onclick="clearBtn()" class="btn-clear">Clear Cart</button>
+  <button onclick="checkoutBtn()" class="btn-checkout">Checkout</button>
+</div>
+
+<script>
+function calcBtn() {
+  let total = 0;
+  let summary = "";
+  document.querySelectorAll(".product-card").forEach(card => {
+
+    let name = card.querySelector("h3").textContent;
+    let price = Number(card.querySelector(".price").textContent);
+    let qty = Number(card.querySelector(".qty").value); // Convert safely
+
+    if (qty > 0) {
+      let itemTotal = price * qty;
+      total += itemTotal;
+      summary += `${name} x ${qty} = RM ${itemTotal.toFixed(2)}<br>`;
+    }
+
+  });
+
+  document.getElementById("cartItems").innerHTML = summary || "No items selected.";
+  document.getElementById("cartTotal").textContent = "RM " + total.toFixed(2);
+}
+
+function clearBtn() {
+  document.querySelectorAll(".qty").forEach(q => q.value = 0);
+  document.getElementById("cartItems").innerHTML = "No items selected.";
+  document.getElementById("cartTotal").textContent = "RM 0.00";
+}
+
+function checkoutBtn() {
+  alert("Thank you for your purchase!");
+}
+
+</script>
+
 </body>
 </html>
