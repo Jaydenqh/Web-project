@@ -7,7 +7,7 @@ body {
 .hero-img1{
     width: 100vw;
     height: 20vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5)), url(../../pic1.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.5)), url(img/about\ this\ web.jpg);
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -32,7 +32,7 @@ body {
 .hero-img2{
     width: 100vw;
     height: 20vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5)), url(../../pic2.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.5)), url(img/meet\ our\ team.jpg);
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
